@@ -10,6 +10,16 @@ namespace CashierBot.Models
         public string Message;
         public object item;
         public int StatusCode;
+        public Response(string message, object item)
+        {
+            this.Message = message;
+            this.item = item;
+        }
+        public Response()
+        {
 
+        }
     }
+
+ 
 }

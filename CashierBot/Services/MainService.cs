@@ -13,8 +13,9 @@ namespace CashierBot.Services
     {
         public static IDatabase database = new TestDatabase();
 
-        public static (string Message, MenuItem item) AddItemToOrder(LuisResult result)
+        public static Response AddItemToOrder(LuisResult result)
         {
+            Response response = new Response();
             if (result.Entities.Count > 0)
             {
                 MenuItem item = database.GetMenuItem(result.Entities[0].Entity.ToString());
@@ -24,22 +25,26 @@ namespace CashierBot.Services
                     {
                         if (int.TryParse(result.Entities[0].Entity.ToString(), out int requestedNumber)){
                             item = database.GetMenuItemByComboNumber(requestedNumber);
-                            return ("Ok, I have added a " + item.name + " to your cart.", item);
+                            response.Message = "Ok, I have added a " + item.name + " to your cart.";
+                            response.item = item;
+                            return response;
                         }
                         
                     }
-                    return ("Your requested item is not on the menu. Please give me another item", null);
-                   
+                    response = new Response("Your requested item is not on the menu. Please give me another item", null);
+                    return response;
 
                 } else
                 {
-                    return("Ok, I have added a " + item.name + " to your cart.", item);
+                    response = new Response("Ok, I have added a " + item.name + " to your cart.", item);
+                    return response;
                 }
                 
             }
             else
             {
-                return ("Please tell me what you want", null);
+                response = new Response("Please tell me what you want", null);
+                return response;
             }
 
         }
