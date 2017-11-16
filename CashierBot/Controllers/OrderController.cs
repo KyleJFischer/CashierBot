@@ -8,7 +8,7 @@ using Microsoft.Bot.Connector;
 namespace CashierBot
 {
     [BotAuthentication]
-    public class MessagesController : ApiController
+    public class OrderController : ApiController
     {
         /// <summary>
         /// POST: api/Messages
