@@ -23,12 +23,13 @@ namespace CashierBot.Services
                 {
                     if (result.Entities[0].Type.ToString() == "builtin.number")
                     {
-                        if (int.TryParse(result.Entities[0].Entity.ToString(), out int requestedNumber)){
-                            item = database.GetMenuItemByComboNumber(requestedNumber);
-                            response.Message = "Ok, I have added a " + item.name + " to your cart.";
-                            response.item = item;
-                            return response;
-                        }
+                        //I just want it to work to test azure out. 
+                        //if (int.TryParse(result.Entities[0].Entity.ToString(), out int requestedNumber)){
+                        //    item = database.GetMenuItemByComboNumber(requestedNumber);
+                        //    response.Message = "Ok, I have added a " + item.name + " to your cart.";
+                        //    response.item = item;
+                        //    return response;
+                        //}
                         
                     }
                     response = new Response("Your requested item is not on the menu. Please give me another item", null);
